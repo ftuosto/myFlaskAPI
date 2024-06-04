@@ -1,18 +1,42 @@
-# Creating an application with a Python code sample
+# Simple Web Application
 
-**Note:** The Python code sample uses the **8081** HTTP port.
+This is a simple web application using [Python Flask](http://flask.pocoo.org/) and [MySQL](https://www.mysql.com/) database.
 
-Before you begin creating an application with this `devfile` code sample, it's helpful to understand the relationship between the `devfile` and `Dockerfile` and how they contribute to your build. You can find these files at the following URLs:
+  Below are the steps required to get this working on a base linux system.
 
-* [Python `devfile.yaml`](https://github.com/devfile-samples/devfile-sample-python-basic/blob/main/devfile.yaml)
-* [Python `Dockerfile`](https://github.com/devfile-samples/devfile-sample-python-basic/blob/main/docker/Dockerfile)
+  - **Install all required dependencies**
+  - **Install and Configure Web Server**
+  - **Start Web Server**
 
-1. The `devfile.yaml` file has an [`image-build` component](https://github.com/devfile-samples/devfile-sample-python-basic/blob/main/devfile.yaml#L24-L30) that points to your `Dockerfile`.
-2. The [`docker/Dockerfile`](https://github.com/devfile-samples/devfile-sample-python-basic/blob/main/docker/Dockerfile) contains the instructions you need to build the code sample as a container image.
-3. The `devfile.yaml` [`kubernetes-deploy` component](https://github.com/devfile-samples/devfile-sample-python-basic/blob/main/devfile.yaml#L31-L43) points to a `deploy.yaml` file that contains instructions for deploying the built container image.
-4. The `devfile.yaml` [`deploy` command](https://github.com/devfile-samples/devfile-sample-python-basic/blob/main/devfile.yaml#L51-L59) completes the [outerloop](https://devfile.io/docs/2.2.0/innerloop-vs-outerloop) deployment phase by pointing to the `image-build` and `kubernetes-deploy` components to create your application.
+## 1. Install all required dependencies
 
-### Additional resources
-* For more information about Python, see [Python](https://www.python.org/).
-* For more information about devfiles, see [Devfile.io](https://devfile.io/).
-* For more information about Dockerfiles, see [Dockerfile reference](https://docs.docker.com/engine/reference/builder/).
+  Python and its dependencies
+  ```bash
+  apt-get install -y python3 python3-setuptools python3-dev build-essential python3-pip default-libmysqlclient-dev
+  ```
+
+## 2. Install and Configure Web Server
+
+Install Python Flask dependency
+```bash
+pip3 install flask
+pip3 install flask-mysql
+```
+
+- Copy `app.py` or download it from a source repository
+- Configure database credentials and parameters
+
+## 3. Start Web Server
+
+Start web server
+```bash
+FLASK_APP=app.py flask run --host=0.0.0.0
+```
+
+## 4. Test
+
+Open a browser and go to URL
+```
+http://<IP>:5000                            => Welcome
+http://<IP>:5000/how%20are%20you            => I am good, how about you?
+```
