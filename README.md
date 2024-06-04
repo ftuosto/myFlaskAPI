@@ -24,7 +24,6 @@ pip3 install flask-mysql
 ```
 
 - Copy `app.py` or download it from a source repository
-- Configure database credentials and parameters
 
 ## 3. Start Web Server
 
